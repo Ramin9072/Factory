@@ -3,8 +3,8 @@
 
     private static void Main(string[] args)
     {
-        VehicleFactory vehicleFactory = new ConcereteVehicleFactory();
-        VehicleFactory vehicleFactory1 = new ConcereteVehicleFactory1();
+        VehicleFactory vehicleFactory = new ConcereteVehicleGermanyFactory();
+        VehicleFactory vehicleFactory1 = new ConcereteVehicleKoreaFactory();
         IFactory BMW = vehicleFactory.GetVehicle("BMW");
         BMW.Drive();
 
@@ -55,7 +55,7 @@
     {
         public abstract IFactory GetVehicle(string vehicle);
     }
-    public class ConcereteVehicleFactory : VehicleFactory
+    public class ConcereteVehicleGermanyFactory : VehicleFactory
     {
         public override IFactory GetVehicle(string vehicle)
         {
@@ -65,20 +65,20 @@
                     return new BMW();
                 case "BENZ":
                     return new BENZ();
+                case "AUDI":
+                    return new AUDI();
                 default:
                     throw new ApplicationException(string.Format("Vehicle '{0}' cannot be created", vehicle));
             }
         }
     }
 
-    public class ConcereteVehicleFactory1 : VehicleFactory
+    public class ConcereteVehicleKoreaFactory : VehicleFactory
     {
         public override IFactory GetVehicle(string vehicle)
         {
             switch (vehicle)
             {
-                case "AUDI":
-                    return new AUDI();
                 case "KIA":
                     return new KIA();
                 default:
